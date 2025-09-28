@@ -31,6 +31,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.example.plopezloginapp.components.cInput
+import com.example.plopezloginapp.screens.LoginScreen
+import com.example.plopezloginapp.screens.RegisterScreen
 import com.example.plopezloginapp.ui.theme.BackgroundColor
 import com.example.plopezloginapp.ui.theme.PLopezLoginAppTheme
 
@@ -50,76 +52,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Black)
-    ) {
-        // Imagen
-        AsyncImage(
-            model = "https://cdn.icon-icons.com/icons2/3873/PNG/512/message_square_icon_244638.png",
-            contentDescription = null,
-            colorFilter = ColorFilter.tint(Color.White),
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .padding(start = 20.dp, end = 20.dp, bottom = 20.dp, top = 50.dp)
-                .size(125.dp)
-        )
-
-        // Panel inferior
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(0.75f)
-                .align(Alignment.BottomCenter)
-                .clip(RoundedCornerShape(topStart = 80.dp))
-                .background(BackgroundColor)
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(50.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = "Login",
-                    fontSize = 24.sp,
-                    style = MaterialTheme.typography.labelLarge,
-                    fontWeight = FontWeight.W400
-                )
-
-                cInput(TextTop = "Login", TextBottom = "Enter your e-mail")
-                cInput(TextTop = "Password", TextBottom = "Enter your password", isPassword = true)
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 10.dp)
-                        .clip(RoundedCornerShape(topStart = 20.dp, bottomStart = 20.dp, bottomEnd = 20.dp))
-                        .background(Color.Black),
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Text(
-                        modifier = Modifier.padding(15.dp),
-                        text = "Login",
-                        color = Color.White
-                    )
-                }
-
-                Spacer(modifier = Modifier.weight(1f))
-
-                Text(
-                    text = "Don't have any account? Sign Up",
-                    fontWeight = FontWeight.W400
-                )
-            }
-        }
-    }
+    RegisterScreen()
 }
-
-
-
-
 
 @Preview(showBackground = true)
 @Composable
