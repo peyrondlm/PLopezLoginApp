@@ -1,6 +1,7 @@
 package com.example.plopezloginapp.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,12 +24,13 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil3.compose.AsyncImage
 import com.example.plopezloginapp.components.cInput
 import com.example.plopezloginapp.ui.theme.BackgroundColor
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -87,9 +89,18 @@ fun LoginScreen() {
 
                 Spacer(modifier = Modifier.weight(1f))
 
+                // Navegar a RegisterScreen
                 Text(
                     text = "Don't have any account? Sign Up",
-                    fontWeight = FontWeight.W400
+                    fontWeight = FontWeight.W400,
+                    color = Color.Black,
+                    modifier = Modifier.clickable {
+                        navController.navigate(RegisterScreenRoute) {
+                            launchSingleTop = true
+                            popUpTo(navController.graph.startDestinationId) { saveState = true }
+                            restoreState = true
+                        }
+                    }
                 )
             }
         }

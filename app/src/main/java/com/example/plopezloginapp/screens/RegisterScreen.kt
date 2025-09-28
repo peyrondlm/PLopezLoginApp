@@ -1,6 +1,7 @@
 package com.example.plopezloginapp.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,15 +20,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.plopezloginapp.components.cInput
 import com.example.plopezloginapp.ui.theme.BackgroundColor
-import com.example.plopezloginapp.ui.theme.PLopezLoginAppTheme
 
 @Composable
-fun RegisterScreen() {
+fun RegisterScreen(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -50,8 +50,6 @@ fun RegisterScreen() {
             )
         }
 
-
-
         // Panel inferior
         Box(
             modifier = Modifier
@@ -67,7 +65,6 @@ fun RegisterScreen() {
                     .padding(50.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
                 cInput(TextTop = "First name", TextBottom = "Enter your first name")
                 cInput(TextTop = "Last name", TextBottom = "Enter your last name")
                 cInput(TextTop = "Email", TextBottom = "Enter your e-mail")
@@ -91,19 +88,20 @@ fun RegisterScreen() {
 
                 Spacer(modifier = Modifier.weight(1f))
 
+                // Navegar a LoginScreen
                 Text(
                     text = "Already have any account? Sign In",
-                    fontWeight = FontWeight.W400
+                    fontWeight = FontWeight.W400,
+                    color = Color.Black,
+                    modifier = Modifier.clickable {
+                        navController.navigate(LoginScreenRoute) {
+                            launchSingleTop = true
+                            popUpTo(navController.graph.startDestinationId) { saveState = true }
+                            restoreState = true
+                        }
+                    }
                 )
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun RegisterScreenPreview() {
-    PLopezLoginAppTheme {
-        RegisterScreen()
     }
 }
